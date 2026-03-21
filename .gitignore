@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Local env files
+.env
+.env.local
+.env.*.local
+
+# Vite
+*.local
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Claude Code local session data
+.claude/
+
+# Logs
+logs/
+*.log
+npm-debug.log*

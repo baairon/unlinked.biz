@@ -1,0 +1,257 @@
+.navbar {
+  width: 100%;
+  background: var(--bg);
+  border-bottom: var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 1.5rem;
+
+  @media (min-width: 640px) {
+    padding: 0.85rem 2.5rem;
+    gap: 2rem;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0.85rem 3rem;
+    gap: 2rem;
+  }
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+
+  @media (min-width: 1024px) {
+    gap: 1.5rem;
+  }
+}
+
+.logo {
+  font-family: var(--font-logo);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.tld {
+  color: var(--text-primary);
+}
+
+.search {
+  display: none;
+
+  @media (min-width: 1024px) {
+    display: flex;
+    align-items: center;
+    border: var(--border);
+    padding: 0.45rem 1rem;
+  }
+}
+
+.searchIcon {
+  display: flex;
+  align-items: center;
+  color: var(--text-primary);
+  margin-right: 0.5rem;
+  line-height: 0;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+
+  :global(svg) {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.searchInput {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  background: transparent;
+  border: none;
+  padding: 0;
+  width: 240px;
+  outline: none;
+  cursor: text;
+
+  @media (min-width: 1200px) {
+    width: 280px;
+  }
+
+  &::placeholder {
+    color: var(--text-placeholder);
+  }
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+
+  @media (min-width: 1024px) {
+    gap: 2rem;
+  }
+}
+
+.links {
+  display: none;
+  align-items: center;
+  gap: 1.5rem;
+
+  @media (min-width: 768px) {
+    display: flex;
+  }
+
+  @media (min-width: 1024px) {
+    gap: 2rem;
+  }
+
+  a {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    font-weight: 400;
+    color: var(--text-primary);
+    text-decoration: none;
+    letter-spacing: 0;
+    white-space: nowrap;
+
+    @media (min-width: 1024px) {
+      font-size: 0.85rem;
+    }
+  }
+}
+
+.iconLink {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+
+  span {
+    display: flex;
+    align-items: center;
+    line-height: 0;
+  }
+
+  :global(svg) {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.wallet {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: var(--text-primary);
+  border: var(--border);
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  box-shadow: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.searchToggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: var(--border);
+  padding: 0.45rem;
+  cursor: pointer;
+  color: var(--text-primary);
+  line-height: 0;
+
+  :global(svg) {
+    width: 16px;
+    height: 16px;
+  }
+
+  @media (min-width: 768px) {
+    display: flex;
+  }
+
+  @media (min-width: 1024px) {
+    display: none;
+  }
+}
+
+.bottomNav {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--bg);
+  border-top: var(--border);
+  z-index: 100;
+  justify-content: space-around;
+  align-items: stretch;
+  padding: 0.5rem 0.25rem;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.bottomNavItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  flex: 1;
+  min-height: 52px;
+  padding: 0.4rem 0.25rem;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  text-decoration: none;
+  cursor: pointer;
+  font-family: var(--font-mono);
+}
+
+.bottomNavIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+
+  :global(svg) {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+.bottomNavLabel {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  line-height: 1;
+
+  @media (min-width: 640px) {
+    font-size: 0.65rem;
+  }
+}

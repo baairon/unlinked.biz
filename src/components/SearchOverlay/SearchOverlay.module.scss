@@ -1,0 +1,165 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: var(--bg);
+  overflow-y: auto;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem;
+
+  @media (min-width: 640px) {
+    padding: 1.5rem;
+  }
+}
+
+.topRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.backButton {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--border);
+  background: none;
+  cursor: pointer;
+  padding: 0;
+
+  :global(svg) {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  border: var(--border);
+  padding: 0.5rem 0.75rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.inputIcon {
+  display: flex;
+  align-items: center;
+  margin-right: 0.5rem;
+  line-height: 0;
+  flex-shrink: 0;
+
+  :global(svg) {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.searchInput {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-primary);
+  background: transparent;
+  border: none;
+  padding: 0;
+  width: 100%;
+  outline: none;
+
+  &::placeholder {
+    color: var(--text-placeholder);
+  }
+}
+
+.divider {
+  border-top: var(--border);
+  margin: 1rem 0;
+}
+
+.recentHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+
+  span {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-style: italic;
+    color: var(--text-placeholder);
+    white-space: nowrap;
+  }
+
+  hr {
+    flex: 1;
+    border: none;
+    border-top: var(--border-subtle);
+    margin: 0;
+  }
+}
+
+.recentList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.recentItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+}
+
+.dropdown {
+  position: fixed;
+  z-index: 200;
+  background: var(--bg);
+  border: var(--border);
+  min-width: 320px;
+  padding: 1rem;
+}
+
+.clearButton {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-placeholder);
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: auto;
+  padding: 0;
+  flex-shrink: 0;
+
+  &:hover {
+    color: var(--text-primary);
+  }
+}
+
+.recentIcon {
+  display: flex;
+  align-items: center;
+  line-height: 0;
+  flex-shrink: 0;
+
+  :global(svg) {
+    width: 16px;
+    height: 16px;
+  }
+}
