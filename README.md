@@ -1,6 +1,6 @@
-## unlinked.xyz
+## unlinked.biz
 
-[unlinked-xyz.pages.dev](https://unlinked-xyz.pages.dev/)
+[unlinked.biz](https://unlinked.biz/)
 
 A professional network built on Solana where your data belongs to you, cryptographically, not by policy.
 
@@ -10,7 +10,7 @@ Built and shipped solo at **HooHacks 2026**, Accessibility and Empowerment track
 
 ## What It Is
 
-**unlinked.xyz** is a front-end only interface to programs deployed on Solana. No centralized backend. No database. All features run directly on-chain.
+**unlinked.biz** is a front-end only interface to programs deployed on Solana. No centralized backend. No database. All features run directly on-chain.
 
 - Your wallet is your identity
 - Your profile is encrypted and stored on IPFS
@@ -27,7 +27,7 @@ LinkedIn made $17B last year by collecting your resume, your network, and your c
 
 The rise of AI has made this worse. AI didn't create the surveillance problem, but it made your data exponentially more valuable. Your professional history is one of the most valuable datasets that exists: who you know, what you've built, where you've worked, how you think. Every platform that stores it is training models on it right now, and you still own none of it.
 
-**unlinked.xyz** gives that control back to the individual. Want to delete everything? Destroy your encryption key. Mathematically unreadable. Permanently. By anyone. Including us. No one can train on what they can't read.
+**unlinked.biz** gives that control back to the individual. Want to delete everything? Destroy your encryption key. Mathematically unreadable. Permanently. By anyone. Including us. No one can train on what they can't read.
 
 ---
 

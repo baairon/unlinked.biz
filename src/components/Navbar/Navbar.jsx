@@ -48,7 +48,7 @@ function Navbar() {
         <div className={styles.inner}>
           <div className={styles.left}>
             <Link to="/" className={styles.logo}>
-              unlinked<span className={styles.tld}>.xyz</span>
+              unlinked<span className={styles.tld}>.biz</span>
             </Link>
             <form className={styles.search} ref={searchRef} onSubmit={handleDesktopSubmit}>
               <button type="submit" className={styles.searchIcon} dangerouslySetInnerHTML={{ __html: searchIcon }} />

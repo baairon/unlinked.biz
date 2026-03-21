@@ -29,7 +29,7 @@ function LandingPage() {
       </Section>
 
       <Section title="The Solution">
-        <p><span className={styles.brand}>unlinked.xyz</span> is a permissionless professional network built for a privacy-first internet.</p>
+        <p><span className={styles.brand}>unlinked.biz</span> is a permissionless professional network built for a privacy-first internet.</p>
         <p>Your wallet is your identity. Your profile is encrypted and stored on IPFS. Your data belongs to you cryptographically. Not legally, not by policy, by math.</p>
         <p>Want to delete everything? Destroy your encryption key. Mathematically unreadable. Permanently. By anyone. Including us.</p>
         <p>That's not a privacy policy. That's a proof.</p>
@@ -65,7 +65,7 @@ function LandingPage() {
       </Section>
 
       <Section title="Permissionless By Design">
-        <p><span className={styles.brand}>unlinked.xyz</span> is an open source interface to a set of programs deployed on Solana. No central server. No corporation in the middle. All data lives at the protocol level, public, auditable, and owned by you.</p>
+        <p><span className={styles.brand}>unlinked.biz</span> is an open source interface to a set of programs deployed on Solana. No central server. No corporation in the middle. All data lives at the protocol level, public, auditable, and owned by you.</p>
         <p>Anyone can build on this protocol. Nobody needs our permission.</p>
       </Section>
 

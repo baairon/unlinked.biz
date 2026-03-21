@@ -17,7 +17,7 @@ function Hero() {
     <section className={styles.hero}>
       <div className={styles.content}>
         <h1 className={styles.title}>
-          <span className={styles.brand}>unlinked.xyz</span> — Decentralized Alternative to LinkedIn
+          <span className={styles.brand}>unlinked.biz</span> — Decentralized Alternative to LinkedIn
         </h1>
         <p className={styles.description}>
           A professional network built on Solana, redesigned from the ground up to stop extracting from you.
