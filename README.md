@@ -37,7 +37,7 @@ AI is not slowing down. Every major platform is racing to train larger models on
 
 ## How It Works
 
-Your profile is stored as JSON on IPFS. The content hash (CID) is written on-chain via a smart contract. Every update produces a new hash, so your full career history is preserved as an immutable sequence of snapshots. You can roll back to any version or cryptographically destroy one by revoking its key.
+Your profile is stored as JSON on IPFS. The content hash (CID) is written on-chain via a Solana program. Every update produces a new hash, so your full career history is preserved as an immutable sequence of snapshots. You can roll back to any version or cryptographically destroy one by revoking its key.
 
 ```
 Layer              Technology

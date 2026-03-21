@@ -9,10 +9,10 @@
 .container {
   max-width: 600px;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 1.5rem;
 
   @media (min-width: 640px) {
-    padding: 1.5rem;
+    padding: 2rem;
   }
 }
 

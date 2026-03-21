@@ -1,4 +1,3 @@
-import Navbar from '../../components/Navbar/Navbar'
 import Hero from '../../components/Hero/Hero'
 import Stats from '../../components/Stats/Stats'
 import Section from '../../components/Section/Section'
@@ -7,7 +6,6 @@ import styles from './LandingPage.module.scss'
 function LandingPage() {
   return (
     <div className={styles.page}>
-      <Navbar />
       <Hero />
 
       <Section title="The Problem">
@@ -32,7 +30,7 @@ function LandingPage() {
 
       <Section title="The Solution">
         <p><span className={styles.brand}>unlinked.xyz</span> is a permissionless professional network built for a privacy-first internet.</p>
-        <p>Your wallet is your identity. Your profile is encrypted and stored on IPFS. Your credentials are verified on-chain. Your data belongs to you cryptographically. Not legally, not by policy, by math.</p>
+        <p>Your wallet is your identity. Your profile is encrypted and stored on IPFS. Your data belongs to you cryptographically. Not legally, not by policy, by math.</p>
         <p>Want to delete everything? Destroy your encryption key. Mathematically unreadable. Permanently. By anyone. Including us.</p>
         <p>That's not a privacy policy. That's a proof.</p>
       </Section>

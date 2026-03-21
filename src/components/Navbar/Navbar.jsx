@@ -1,4 +1,7 @@
 import { useState, useRef } from 'react'
+import { Link } from 'react-router-dom'
+import { useWallet } from '../../contexts/WalletContext'
+import WalletDropdown from './WalletDropdown'
 import searchIcon from 'pixelarticons/svg/search.svg?raw'
 import homeIcon from 'pixelarticons/svg/home.svg?raw'
 import usersIcon from 'pixelarticons/svg/users.svg?raw'
@@ -20,6 +23,7 @@ function loadRecent() {
 }
 
 function Navbar() {
+  const { address, connecting, connect, disconnect } = useWallet()
   const [searchOpen, setSearchOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [recentSearches, setRecentSearches] = useState(loadRecent)
@@ -43,9 +47,9 @@ function Navbar() {
       <nav className={styles.navbar}>
         <div className={styles.inner}>
           <div className={styles.left}>
-            <a href="/" className={styles.logo}>
+            <Link to="/" className={styles.logo}>
               unlinked<span className={styles.tld}>.xyz</span>
-            </a>
+            </Link>
             <form className={styles.search} ref={searchRef} onSubmit={handleDesktopSubmit}>
               <button type="submit" className={styles.searchIcon} dangerouslySetInnerHTML={{ __html: searchIcon }} />
               <input
@@ -61,22 +65,22 @@ function Navbar() {
 
           <div className={styles.right}>
             <div className={styles.links}>
-              <a href="/" className={styles.iconLink}>
+              <Link to="/" className={styles.iconLink}>
                 <span dangerouslySetInnerHTML={{ __html: homeIcon }} />
                 Home
-              </a>
-              <a href="#network" className={styles.iconLink}>
+              </Link>
+              <Link to="#network" className={styles.iconLink}>
                 <span dangerouslySetInnerHTML={{ __html: usersIcon }} />
                 My Network
-              </a>
-              <a href="#jobs" className={styles.iconLink}>
+              </Link>
+              <Link to="#jobs" className={styles.iconLink}>
                 <span dangerouslySetInnerHTML={{ __html: briefcaseIcon }} />
                 Jobs
-              </a>
-              <a href="#notifications" className={styles.iconLink}>
+              </Link>
+              <Link to="#notifications" className={styles.iconLink}>
                 <span dangerouslySetInnerHTML={{ __html: bellIcon }} />
                 Notifications
-              </a>
+              </Link>
             </div>
             <button
               className={styles.searchToggle}
@@ -85,28 +89,39 @@ function Navbar() {
             >
               <span dangerouslySetInnerHTML={{ __html: searchIcon }} />
             </button>
-            <button type="button" className={styles.wallet}>Connect</button>
+            {address ? (
+              <WalletDropdown address={address} disconnect={disconnect} />
+            ) : (
+              <button
+                type="button"
+                className={styles.wallet}
+                onClick={connect}
+                disabled={connecting}
+              >
+                {connecting ? '...' : 'Connect'}
+              </button>
+            )}
           </div>
         </div>
       </nav>
 
       <nav className={styles.bottomNav} aria-label="Mobile navigation">
-        <a href="/" className={styles.bottomNavItem}>
+        <Link to="/" className={styles.bottomNavItem}>
           <span className={styles.bottomNavIcon} dangerouslySetInnerHTML={{ __html: homeIcon }} />
           <span className={styles.bottomNavLabel}>Home</span>
-        </a>
-        <a href="#network" className={styles.bottomNavItem}>
+        </Link>
+        <Link to="#network" className={styles.bottomNavItem}>
           <span className={styles.bottomNavIcon} dangerouslySetInnerHTML={{ __html: usersIcon }} />
           <span className={styles.bottomNavLabel}>Network</span>
-        </a>
-        <a href="#jobs" className={styles.bottomNavItem}>
+        </Link>
+        <Link to="#jobs" className={styles.bottomNavItem}>
           <span className={styles.bottomNavIcon} dangerouslySetInnerHTML={{ __html: briefcaseIcon }} />
           <span className={styles.bottomNavLabel}>Jobs</span>
-        </a>
-        <a href="#notifications" className={styles.bottomNavItem}>
+        </Link>
+        <Link to="#notifications" className={styles.bottomNavItem}>
           <span className={styles.bottomNavIcon} dangerouslySetInnerHTML={{ __html: bellIcon }} />
           <span className={styles.bottomNavLabel}>Notifications</span>
-        </a>
+        </Link>
         <button
           className={styles.bottomNavItem}
           onClick={() => setSearchOpen(o => !o)}

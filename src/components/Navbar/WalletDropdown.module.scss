@@ -1,0 +1,114 @@
+.wrapper {
+  position: relative;
+}
+
+.trigger {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--border);
+  background: var(--bg);
+  cursor: pointer;
+  padding: 0;
+
+  :global(svg) {
+    width: 20px;
+    height: 20px;
+    color: var(--text-primary);
+  }
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: var(--bg);
+  border: var(--border);
+  min-width: 220px;
+  z-index: 200;
+}
+
+.addressRow {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.7rem 0.85rem;
+  border-bottom: var(--border);
+}
+
+.addressIcon {
+  display: flex;
+  align-items: center;
+  color: var(--text-muted);
+  flex-shrink: 0;
+
+  :global(svg) {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.addressText {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+
+.copyBtn {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: auto;
+  color: var(--text-muted);
+
+  &:hover {
+    color: var(--text-primary);
+  }
+
+  :global(svg) {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #eee;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  text-align: left;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    background: #f5f5f5;
+  }
+
+  span {
+    display: flex;
+    align-items: center;
+    line-height: 0;
+  }
+
+  :global(svg) {
+    width: 16px;
+    height: 16px;
+  }
+}
