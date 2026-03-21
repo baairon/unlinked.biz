@@ -1,10 +1,8 @@
 ## unlinked.xyz
 
-https://unlinked.xyz
-
 A professional network built on Solana where your data belongs to you, cryptographically, not by policy.
 
-Built and shipped solo at **HooHacks 2026**, Accessibility and Empowerment track. Currently in MVP state.
+Built and shipped solo at **HooHacks 2026**, Accessibility and Empowerment track. Best use case of Solana. Currently in MVP state.
 
 ---
 
