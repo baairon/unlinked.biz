@@ -1,6 +1,6 @@
-import styles from './Section.module.scss'
+import styles from './LandingSection.module.scss'
 
-function Section({ title, children }) {
+function LandingSection({ title, children }) {
   return (
     <section className={styles.section}>
       <div className={styles.inner}>
@@ -13,4 +13,4 @@ function Section({ title, children }) {
   )
 }
 
-export default Section
+export default LandingSection

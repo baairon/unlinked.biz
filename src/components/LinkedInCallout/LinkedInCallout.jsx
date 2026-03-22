@@ -1,4 +1,4 @@
-import styles from './Stats.module.scss'
+import styles from './LinkedInCallout.module.scss'
 
 import coinsSvg from 'pixelarticons/svg/coins.svg?raw'
 import usersSvg from 'pixelarticons/svg/users.svg?raw'
@@ -10,7 +10,7 @@ const stats = [
   { value: '$0', label: 'paid to you', icon: cancelSvg },
 ]
 
-function Stats() {
+function LinkedInCallout() {
   return (
     <section className={styles.stats}>
       <div className={styles.grid}>
@@ -26,4 +26,4 @@ function Stats() {
   )
 }
 
-export default Stats
+export default LinkedInCallout
