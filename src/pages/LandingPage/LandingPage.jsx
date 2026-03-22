@@ -8,14 +8,14 @@ function LandingPage() {
     <div className={styles.page}>
       <Hero />
 
-      <LandingSectiontitle="The Problem">
+      <LandingSection title="The Problem">
         <p>LinkedIn made $17 billion last year. They didn't build a product. They built a surveillance machine, and you fed it everything.</p>
         <p>That's not an accident. That's the business model.</p>
       </LandingSection>
 
       <LinkedInCallout />
 
-      <LandingSectiontitle="What They Did With It">
+      <LandingSection title="What They Did With It">
         <p>They took your resume, your voice, your network, your career history. Ran it through a model and sold it back to you as LinkedIn Premium. The output?</p>
         <blockquote className={styles.quoted}>"Results-driven professional with a passion for innovation."</blockquote>
         <p>Sound familiar? It should. It sounds like everyone.</p>
@@ -23,19 +23,19 @@ function LandingPage() {
         <p>They didn't build a tool for you. They built a data pipeline and sold access to it back to you.</p>
       </LandingSection>
 
-      <LandingSectiontitle="It Gets Worse">
+      <LandingSection title="It Gets Worse">
         <p>You don't own your profile. You rent it. A closed-source algorithm decides who sees you. They can suppress it, ban it, feed it into the next model without telling you.</p>
         <p>LinkedIn shut down in China. 50 million people lost their professional identity overnight. No appeal. No recourse. No backup. Because it was never yours.</p>
       </LandingSection>
 
-      <LandingSectiontitle="The Solution">
+      <LandingSection title="The Solution">
         <p><span className={styles.brand}>unlinked.biz</span> is a permissionless professional network built for a privacy-first internet.</p>
         <p>Your wallet is your identity. Your profile is encrypted and stored on IPFS. Your data belongs to you cryptographically. Not legally, not by policy, by math.</p>
         <p>Want to delete everything? Destroy your encryption key. Mathematically unreadable. Permanently. By anyone. Including us.</p>
         <p>That's not a privacy policy. That's a proof.</p>
       </LandingSection>
 
-      <LandingSectiontitle="Your Career Has a Commit History">
+      <LandingSection title="Your Career Has a Commit History">
         <p>Every update mints a new snapshot. Every version is yours. Roll back, audit, or cryptographically destroy any state — one transaction.</p>
         <div className={styles.commitLog}>
           <div className={styles.commit}>
@@ -57,14 +57,14 @@ function LandingPage() {
         <p>Your identity. Your repo. Nobody else has commit access.</p>
       </LandingSection>
 
-      <LandingSectiontitle="Your Data Is The Product">
+      <LandingSection title="Your Data Is The Product">
         <p>Your professional history is one of the most valuable datasets that exists. Who you know, what you've built, where you've worked, how you think. Every platform that stores it is training models on it right now.</p>
         <p>AI didn't create the surveillance problem. It made your data exponentially more valuable, and you still own none of it.</p>
         <p>The people building the next era of the internet already understand this. They know that control over your data is control over your future. And they're done handing it to corporations who monetize it without consent.</p>
         <p>A wallet is all you need. No one can ban you from your own wallet. No one can train on what they can't read.</p>
       </LandingSection>
 
-      <LandingSectiontitle="Permissionless By Design">
+      <LandingSection title="Permissionless By Design">
         <p><span className={styles.brand}>unlinked.biz</span> is an open source interface to a set of programs deployed on Solana. No central server. No corporation in the middle. All data lives at the protocol level, public, auditable, and owned by you.</p>
         <p>Anyone can build on this protocol. Nobody needs our permission.</p>
       </LandingSection>
