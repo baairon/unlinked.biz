@@ -9,7 +9,7 @@ const steps = [
   { icon: walletSvg, title: 'Connect Wallet', desc: 'One wallet. No email. No password. Your login and your ownership proof.' },
   { icon: lockSvg, title: 'Encrypted Profile', desc: 'Career history on IPFS, encrypted end-to-end. You choose who sees what.' },
   { icon: shieldSvg, title: 'Provable Reputation', desc: "Reputation built from on-chain activity — what you've actually done, not what you claim." },
-  { icon: deleteSvg, title: 'True Deletion', desc: 'Destroy your key. Everything becomes permanently unreadable. By anyone. Including us.' },
+  { icon: deleteSvg, title: 'True Deletion', desc: 'Destroy your key. Everything becomes permanently unreadable. By anyone. Including us.', red: true },
 ]
 
 function Hero() {
@@ -32,7 +32,7 @@ function Hero() {
         <div className={styles.grid}>
           {steps.map((step) => (
             <div key={step.title} className={styles.card}>
-              <span className={styles.icon} dangerouslySetInnerHTML={{ __html: step.icon }} />
+              <span className={`${styles.icon}${step.red ? ` ${styles.iconRed}` : ''}`} dangerouslySetInnerHTML={{ __html: step.icon }} />
               <h3 className={styles.cardTitle}>{step.title}</h3>
               <p className={styles.cardDesc}>{step.desc}</p>
             </div>
