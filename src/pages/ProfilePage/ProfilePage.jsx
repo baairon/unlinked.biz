@@ -281,11 +281,35 @@ function ProfilePage() {
           </div>
         </div>
 
-        {profile.loading && (
-          <div className={styles.section}>
-            <p className={styles.empty}>Loading profile...</p>
+        {profile.loading ? (
+          <div className={styles.skeleton}>
+            <div className={styles.skeletonSection}>
+              <div className={`${styles.skeletonBar} ${styles.skeletonTitle}`} />
+              <div className={styles.skeletonBar} style={{ width: '100%' }} />
+              <div className={styles.skeletonBar} style={{ width: '82%' }} />
+              <div className={styles.skeletonBar} style={{ width: '65%' }} />
+            </div>
+            <div className={styles.skeletonSection}>
+              <div className={`${styles.skeletonBar} ${styles.skeletonTitle}`} />
+              <div className={styles.skeletonBar} style={{ width: '55%' }} />
+              <div className={styles.skeletonBar} style={{ width: '38%' }} />
+            </div>
+            <div className={styles.skeletonSection}>
+              <div className={`${styles.skeletonBar} ${styles.skeletonTitle}`} />
+              <div className={styles.skeletonBar} style={{ width: '48%' }} />
+              <div className={styles.skeletonBar} style={{ width: '32%' }} />
+            </div>
+            <div className={styles.skeletonSection}>
+              <div className={`${styles.skeletonBar} ${styles.skeletonTitle}`} />
+              <div className={styles.skeletonTags}>
+                {[70, 90, 55, 80].map(w => (
+                  <div key={w} className={styles.skeletonTag} style={{ width: `${w}px` }} />
+                ))}
+              </div>
+            </div>
           </div>
-        )}
+        ) : (
+        <div>
 
         <div className={styles.section}>
           <div className={styles.sectionHeader}>
@@ -505,6 +529,9 @@ function ProfilePage() {
             ))}
           </div>
         ) : null}
+
+        </div>
+        )}
 
         {isOwner && (
           <button className={styles.saveTab} onClick={handleSave} disabled={profile.saving}>

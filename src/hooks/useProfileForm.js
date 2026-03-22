@@ -187,7 +187,7 @@ export function useProfileForm(address) {
 
       let raw = onChain?.cid || null
       const localRaw = loadLatestCid()
-      if (localRaw && localRaw !== raw) {
+      if (!raw && localRaw) {
         raw = localRaw
       }
 
@@ -392,6 +392,8 @@ export function useProfileForm(address) {
       id: generateShortHash(),
       timestamp: new Date().toISOString(),
       message: `Rolled back to version ${entry.id}`,
+      txSignature: null,
+      cid: null,
       payload: structuredClone(payload),
     }
     setHistory(h => [newEntry, ...h])

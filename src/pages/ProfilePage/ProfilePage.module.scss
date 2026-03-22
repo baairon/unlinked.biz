@@ -261,6 +261,49 @@
   max-width: 300px;
 }
 
+@keyframes shimmer {
+  0% { opacity: 1; }
+  50% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+.skeleton {
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+
+.skeletonSection {
+  padding: 1.75rem 0;
+  border-bottom: var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.skeletonBar {
+  height: 0.7rem;
+  background: var(--text-primary);
+  opacity: 0.08;
+}
+
+.skeletonTitle {
+  width: 4rem;
+  height: 0.6rem;
+  opacity: 0.14;
+  margin-bottom: 0.35rem;
+}
+
+.skeletonTags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.skeletonTag {
+  height: 1.6rem;
+  background: var(--text-primary);
+  opacity: 0.08;
+}
+
 .section {
   padding: 1.75rem 0;
   border-bottom: var(--border);
@@ -616,7 +659,7 @@
   cursor: pointer;
 
   &:hover {
-    color: rgba(255, 255, 255, 0.8);
+    background: #333;
   }
 
   &:disabled {
@@ -690,16 +733,15 @@
   border: var(--border);
   border-bottom: none;
   border-radius: 0;
-  padding: 0.25rem 0.6rem;
+  padding: 0.25rem 0.75rem;
   cursor: pointer;
   z-index: 50;
   letter-spacing: 0.02em;
   white-space: nowrap;
-  min-width: 5.5rem;
   text-align: center;
 
   &:hover {
-    color: rgba(255, 255, 255, 0.8);
+    background: #333;
   }
 
   &:disabled {

@@ -1,7 +1,7 @@
 use anchor_lang::prelude::*;
 
 // TODO: Replace with new program ID after deployment
-declare_id!("11111111111111111111111111111111");
+declare_id!("DQfdaW4gHY64GJpocjyseyB3QAwava5EseW7Ghi9YRRp");
 
 #[program]
 pub mod unlinked_profile {

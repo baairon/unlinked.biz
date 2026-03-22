@@ -4,8 +4,8 @@ skip-lint = false
 
 [programs.devnet]
 # TODO: Replace with new program IDs after deployment
-unlinked_profile = "11111111111111111111111111111111"
-unlinked_connections = "11111111111111111111111111111111"
+unlinked_profile = "DQfdaW4gHY64GJpocjyseyB3QAwava5EseW7Ghi9YRRp"
+unlinked_connections = "8fnvM2kBVXQLCAqAMQp6Fv6Ks5deXEvVSNPLBmARVRH8"
 
 [registry]
 url = "https://api.apr.dev"
