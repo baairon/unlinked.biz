@@ -1,13 +1,10 @@
 use anchor_lang::prelude::*;
 
-// TODO: Replace with new program ID after deployment
 declare_id!("8fnvM2kBVXQLCAqAMQp6Fv6Ks5deXEvVSNPLBmARVRH8");
 
 #[program]
 pub mod unlinked_connections {
     use super::*;
-
-    
     
     pub fn send_request(
         ctx: Context<SendRequest>,
