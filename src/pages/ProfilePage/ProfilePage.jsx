@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom'
+import { useEffect, useLayoutEffect } from 'react'
 import { useWallet } from '../../contexts/WalletContext'
 import { useProfileForm, formatUTCTimestamp } from '../../hooks/useProfileForm'
 import userIcon from 'pixelarticons/svg/user.svg?raw'
@@ -11,10 +12,11 @@ import copyIcon from 'pixelarticons/svg/copy.svg?raw'
 import walletIcon from 'pixelarticons/svg/wallet.svg?raw'
 import zapIcon from 'pixelarticons/svg/zap.svg?raw'
 import penSquareIcon from 'pixelarticons/svg/pen-square.svg?raw'
-import plusIcon from 'pixelarticons/svg/plus.svg?raw'
-import minusIcon from 'pixelarticons/svg/minus.svg?raw'
+const plusIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M20 22H4v-2h16v2ZM4 20H2V4h2v16Zm18 0h-2V4h2v16Zm-9-9h4v2h-4v4h-2v-4H7v-2h4V7h2v4Zm7-7H4V2h16v2Z"/></svg>`
+const minusIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M4 11h16v2H4z"/></svg>`
 import deleteIcon from 'pixelarticons/svg/delete.svg?raw'
 import clockIcon from 'pixelarticons/svg/clock.svg?raw'
+import undoIcon from 'pixelarticons/svg/undo.svg?raw'
 import styles from './ProfilePage.module.scss'
 
 function truncate(addr) {
@@ -30,6 +32,17 @@ function ProfilePage() {
   const wallet = useWallet()
   const isOwner = wallet.address && wallet.address === address
   const profile = useProfileForm()
+
+  useEffect(() => {
+    if (window.location.hash === '#history') {
+      const el = document.getElementById('history')
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth' })
+        }, 100)
+      }
+    }
+  }, [address, window.location.hash])
 
   function handleSave() {
     profile.saveProfile()
@@ -338,7 +351,7 @@ function ProfilePage() {
             <div className={styles.sectionHeader}>
               <h2 className={styles.sectionTitle}>
                 <span className={styles.sectionIcon} dangerouslySetInnerHTML={{ __html: clockIcon }} />
-                Activity Log
+                Version History
               </h2>
               {isOwner && profile.history.length > 0 && (
                 <button className={styles.clearAllBtn} onClick={profile.clearHistory}>
@@ -347,7 +360,7 @@ function ProfilePage() {
               )}
             </div>
             <p className={styles.activityNote}>
-              All activity is recorded publicly on-chain. You can permanently delete individual entries at any time.
+              Every update is a verifiable version on-chain. You have full sovereignty to redact or delete any state from your history at any time.
             </p>
             {profile.history.length === 0 && (
               <span className={styles.empty}>No activity yet — save your profile to create your first entry</span>
@@ -360,11 +373,20 @@ function ProfilePage() {
                 <span className={styles.historyDot}>·</span>
                 <span className={styles.historyMessage}>{entry.message}</span>
                 {isOwner && (
-                  <button
-                    className={styles.deleteEntryBtn}
-                    onClick={() => profile.deleteHistoryEntry(entry.id)}
-                    dangerouslySetInnerHTML={{ __html: deleteIcon }}
-                  />
+                  <div className={styles.historyActions}>
+                    <button
+                      className={styles.rollbackEntryBtn}
+                      onClick={() => profile.rollback(entry)}
+                      title="Rollback to this version"
+                      dangerouslySetInnerHTML={{ __html: undoIcon }}
+                    />
+                    <button
+                      className={styles.deleteEntryBtn}
+                      onClick={() => profile.deleteHistoryEntry(entry.id)}
+                      title="Delete this version"
+                      dangerouslySetInnerHTML={{ __html: deleteIcon }}
+                    />
+                  </div>
                 )}
               </div>
             ))}

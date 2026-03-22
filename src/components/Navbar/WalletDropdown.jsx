@@ -28,31 +28,26 @@ function WalletDropdown({ address, disconnect }) {
   return (
     <div className={styles.wrapper} ref={ref}>
       <button className={styles.trigger} onClick={() => setOpen(o => !o)}>
-        <span dangerouslySetInnerHTML={{ __html: userIcon }} />
+        <span dangerouslySetInnerHTML={{ __html: walletIcon }} />
+        {truncate(address)}
       </button>
       {open && (
         <div className={styles.dropdown}>
-          <div className={styles.addressRow}>
-            <span className={styles.addressIcon} dangerouslySetInnerHTML={{ __html: walletIcon }} />
-            <span className={styles.addressText}>{truncate(address)}</span>
-            <button className={styles.copyBtn} onClick={() => navigator.clipboard.writeText(address)}>
-              <span dangerouslySetInnerHTML={{ __html: copyIcon }} />
-            </button>
-          </div>
           <button className={styles.menuItem} onClick={() => {
             navigate(`/profile/${address}`)
             setOpen(false)
           }}>
             <span dangerouslySetInnerHTML={{ __html: userIcon }} />
-            My Profile
+            Profile
           </button>
           <button className={styles.menuItem} onClick={() => {
             navigate(`/profile/${address}#history`)
             setOpen(false)
           }}>
             <span dangerouslySetInnerHTML={{ __html: clockIcon }} />
-            Activity Log
+            Version History
           </button>
+
           <button className={styles.menuItem} onClick={() => {
             disconnect()
             setOpen(false)

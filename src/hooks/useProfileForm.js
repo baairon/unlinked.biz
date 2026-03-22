@@ -156,6 +156,7 @@ export function useProfileForm() {
         id: generateShortHash(),
         timestamp: new Date().toISOString(),
         message,
+        payload: structuredClone(payload),
       }
       setHistory(h => [entry, ...h])
     }
@@ -163,6 +164,36 @@ export function useProfileForm() {
     previousPayload.current = structuredClone(payload)
     console.log('Profile payload:', payload)
   })
+
+  const rollback = useCallback((entry) => {
+    const { payload } = entry
+    
+    const currentPayload = buildPayload()
+    if (JSON.stringify(currentPayload) === JSON.stringify(payload)) {
+      console.log('Already at this version state')
+      return
+    }
+
+    setFirstName(payload.firstName || '')
+    setLastName(payload.lastName || '')
+    setAbout(payload.about || '')
+    setLocation(payload.location || '')
+    setWebsite(payload.website || '')
+    setSkills(payload.skills || [])
+    setAvatarSrc(payload.avatar || null)
+    
+    setExperience((payload.experience || []).map(e => ({ ...e, id: nextId.current++ })))
+    setEducation((payload.education || []).map(e => ({ ...e, id: nextId.current++ })))
+
+    const newEntry = {
+      id: generateShortHash(),
+      timestamp: new Date().toISOString(),
+      message: `Rolled back to version ${entry.id}`,
+      payload: structuredClone(payload),
+    }
+    setHistory(h => [newEntry, ...h])
+    previousPayload.current = structuredClone(payload)
+  }, [firstName, lastName, about, location, website, skills, avatarSrc, experience, education])
 
   function deleteHistoryEntry(id) {
     setHistory(h => h.filter(e => e.id !== id))

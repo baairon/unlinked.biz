@@ -83,16 +83,24 @@
   margin: 1rem 0;
 }
 
+.dropdown {
+  position: fixed;
+  z-index: 200;
+  background: var(--bg);
+  border: var(--border);
+  min-width: 320px;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 1);
+}
+
 .recentHeader {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  margin-top: 0.25rem;
-  margin-bottom: 0.25rem;
+  padding: 0.75rem 1rem 0.5rem;
 
   span {
     font-family: var(--font-mono);
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-style: italic;
     color: var(--text-placeholder);
     white-space: nowrap;
@@ -101,7 +109,8 @@
   hr {
     flex: 1;
     border: none;
-    border-top: var(--border-subtle);
+    border-top: var(--border);
+    opacity: 0.2;
     margin: 0;
   }
 }
@@ -115,25 +124,25 @@
 .recentItem {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.6rem 0;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--text-primary);
   background: none;
   border: none;
+  border-bottom: var(--border);
   cursor: pointer;
   width: 100%;
   text-align: left;
-}
 
-.dropdown {
-  position: fixed;
-  z-index: 200;
-  background: var(--bg);
-  border: var(--border);
-  min-width: 320px;
-  padding: 1rem;
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    background: #f5f5f5;
+  }
 }
 
 .clearButton {
@@ -144,11 +153,13 @@
   border: none;
   cursor: pointer;
   margin-left: auto;
-  padding: 0;
+  padding: 0.2rem 0.4rem;
   flex-shrink: 0;
+  border: 1px solid transparent;
 
   &:hover {
     color: var(--text-primary);
+    border: 1px solid var(--border);
   }
 }
 
@@ -157,9 +168,10 @@
   align-items: center;
   line-height: 0;
   flex-shrink: 0;
+  color: var(--text-placeholder);
 
   :global(svg) {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
   }
 }
