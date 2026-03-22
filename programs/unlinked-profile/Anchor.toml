@@ -1,0 +1,18 @@
+[features]
+seeds = false
+skip-lint = false
+
+[programs.devnet]
+# TODO: Replace with new program IDs after deployment
+unlinked_profile = "11111111111111111111111111111111"
+unlinked_connections = "11111111111111111111111111111111"
+
+[registry]
+url = "https://api.apr.dev"
+
+[provider]
+cluster = "devnet"
+wallet = "~/.config/solana/id.json"
+
+[scripts]
+test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"

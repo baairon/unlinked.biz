@@ -1,6 +1,6 @@
 :root {
-  --avatar-size-ms: 5rem;
-  --avatar-size-lg: 6.25rem;
+  --avatar-size-ms: 5.5rem;
+  --avatar-size-lg: 6.85rem;
 }
 
 .page {
@@ -28,6 +28,7 @@
   max-width: 47.5rem;
   margin: 0 auto;
   padding: 0 1.5rem;
+  position: relative;
 
   @media (min-width: 640px) {
     padding: 0 2rem;
@@ -64,8 +65,8 @@
   overflow: hidden;
 
   :global(svg) {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2.75rem;
+    height: 2.75rem;
     color: var(--text-muted);
   }
 
@@ -75,8 +76,8 @@
     min-width: var(--avatar-size-lg);
 
     :global(svg) {
-      width: 3rem;
-      height: 3rem;
+      width: 3.4rem;
+      height: 3.4rem;
     }
   }
 }
@@ -264,7 +265,7 @@
   padding: 1.75rem 0;
   border-bottom: var(--border);
 
-  &:last-child {
+  &:last-of-type {
     border-bottom: none;
   }
 }
@@ -548,6 +549,22 @@
   white-space: nowrap;
 }
 
+.historyTx {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--text-muted);
+
+  &:hover {
+    color: var(--text-primary);
+  }
+
+  :global(svg) {
+    width: 14px;
+    height: 14px;
+  }
+}
+
 .historyActions {
   display: flex;
   align-items: center;
@@ -582,22 +599,124 @@
   color: var(--text-muted);
 }
 
-.saveTab {
-  position: fixed;
-  right: 1.5rem;
-  bottom: calc(60px + 1rem);
+.connectRow {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.connectBtn {
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   font-weight: 700;
   color: #ffffff;
   background: var(--text-primary);
   border: none;
-  padding: 0.4rem 1rem;
+  padding: 0.35rem 1rem;
+  cursor: pointer;
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+}
+
+.pendingBtn {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: none;
+  border: var(--border);
+  padding: 0.35rem 1rem;
+  cursor: default;
+}
+
+.connectedBtn {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  background: none;
+  border: var(--border);
+  padding: 0.35rem 1rem;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--text-primary);
+    color: #ffffff;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+}
+
+.rejectBtn {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  background: none;
+  border: var(--border);
+  padding: 0.35rem 1rem;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--text-primary);
+    color: #ffffff;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+}
+
+.saveTab {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 68px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: var(--text-primary);
+  border: var(--border);
+  border-bottom: none;
+  border-radius: 0;
+  padding: 0.25rem 0.6rem;
   cursor: pointer;
   z-index: 50;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  min-width: 5.5rem;
+  text-align: center;
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  @media (min-width: 640px) {
+    right: 2rem;
+  }
 
   @media (min-width: 768px) {
-    right: 2rem;
-    bottom: 2rem;
+    bottom: 0;
+  }
+
+  @media (min-width: 1024px) {
+    right: auto;
+    left: calc(50% + 23.75rem);
+    transform: translateX(-100%);
   }
 }

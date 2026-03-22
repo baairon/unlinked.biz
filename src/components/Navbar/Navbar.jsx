@@ -69,7 +69,7 @@ function Navbar() {
                 <span dangerouslySetInnerHTML={{ __html: homeIcon }} />
                 Home
               </Link>
-              <Link to="#network" className={styles.iconLink}>
+              <Link to="/network" className={styles.iconLink}>
                 <span dangerouslySetInnerHTML={{ __html: usersIcon }} />
                 My Network
               </Link>
@@ -77,7 +77,7 @@ function Navbar() {
                 <span dangerouslySetInnerHTML={{ __html: briefcaseIcon }} />
                 Jobs
               </Link>
-              <Link to="#notifications" className={styles.iconLink}>
+              <Link to="/notifications" className={styles.iconLink}>
                 <span dangerouslySetInnerHTML={{ __html: bellIcon }} />
                 Notifications
               </Link>
@@ -118,7 +118,7 @@ function Navbar() {
           <span className={styles.bottomNavIcon} dangerouslySetInnerHTML={{ __html: briefcaseIcon }} />
           <span className={styles.bottomNavLabel}>Jobs</span>
         </Link>
-        <Link to="#notifications" className={styles.bottomNavItem}>
+        <Link to="/notifications" className={styles.bottomNavItem}>
           <span className={styles.bottomNavIcon} dangerouslySetInnerHTML={{ __html: bellIcon }} />
           <span className={styles.bottomNavLabel}>Notifications</span>
         </Link>

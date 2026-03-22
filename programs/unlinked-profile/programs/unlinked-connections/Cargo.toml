@@ -1,0 +1,19 @@
+[package]
+name = "unlinked-connections"
+version = "0.1.0"
+description = "Solana program for wallet-to-wallet connections"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "unlinked_connections"
+
+[features]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+cpi = ["no-entrypoint"]
+default = []
+
+[dependencies]
+anchor-lang = "0.30.1"

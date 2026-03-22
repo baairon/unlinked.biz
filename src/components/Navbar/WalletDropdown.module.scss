@@ -21,11 +21,11 @@
   :global(svg) {
     width: 14px;
     height: 14px;
-    color: #ffffff;
+    color: inherit;
   }
 
   &:hover {
-    opacity: 0.9;
+    color: rgba(255, 255, 255, 0.8);
   }
 }
 

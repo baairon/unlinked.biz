@@ -24,3 +24,7 @@ Thumbs.db
 logs/
 *.log
 npm-debug.log*
+
+# Anchor / Solana programs
+programs/**/target/
+programs/**/.anchor/

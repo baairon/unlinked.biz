@@ -1,7 +1,8 @@
 import { useParams } from 'react-router-dom'
-import { useEffect, useLayoutEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useWallet } from '../../contexts/WalletContext'
 import { useProfileForm, formatUTCTimestamp } from '../../hooks/useProfileForm'
+import { getConnectionStatus, sendConnectionRequest, acceptConnectionRequest, rejectConnectionRequest, removeConnection } from '../../services/connections'
 import userIcon from 'pixelarticons/svg/user.svg?raw'
 import mapPinIcon from 'pixelarticons/svg/map-pin.svg?raw'
 import linkIcon from 'pixelarticons/svg/link.svg?raw'
@@ -17,6 +18,7 @@ const minusIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" v
 import deleteIcon from 'pixelarticons/svg/delete.svg?raw'
 import clockIcon from 'pixelarticons/svg/clock.svg?raw'
 import undoIcon from 'pixelarticons/svg/undo.svg?raw'
+import externalLinkIcon from 'pixelarticons/svg/external-link.svg?raw'
 import styles from './ProfilePage.module.scss'
 
 function truncate(addr) {
@@ -31,7 +33,17 @@ function ProfilePage() {
   const { address } = useParams()
   const wallet = useWallet()
   const isOwner = wallet.address && wallet.address === address
-  const profile = useProfileForm()
+  const profile = useProfileForm(address)
+  const [connStatus, setConnStatus] = useState('none')
+  const [connLoading, setConnLoading] = useState(false)
+
+  
+  useEffect(() => {
+    if (!wallet.address || isOwner || !address) return
+    getConnectionStatus(wallet.address, address)
+      .then(setConnStatus)
+      .catch(() => setConnStatus('none'))
+  }, [wallet.address, address, isOwner])
 
   useEffect(() => {
     if (window.location.hash === '#history') {
@@ -43,6 +55,55 @@ function ProfilePage() {
       }
     }
   }, [address, window.location.hash])
+
+  async function handleConnect() {
+    setConnLoading(true)
+    try {
+      await sendConnectionRequest(address)
+      setConnStatus('pending_sent')
+    } catch (err) {
+      console.error('[profile] connect error:', err)
+      alert('Connection failed: ' + err.message)
+    } finally {
+      setConnLoading(false)
+    }
+  }
+
+  async function handleAcceptConn() {
+    setConnLoading(true)
+    try {
+      await acceptConnectionRequest(address)
+      setConnStatus('connected')
+    } catch (err) {
+      alert('Accept failed: ' + err.message)
+    } finally {
+      setConnLoading(false)
+    }
+  }
+
+  async function handleRejectConn() {
+    setConnLoading(true)
+    try {
+      await rejectConnectionRequest(address)
+      setConnStatus('none')
+    } catch (err) {
+      alert('Reject failed: ' + err.message)
+    } finally {
+      setConnLoading(false)
+    }
+  }
+
+  async function handleRemoveConn() {
+    setConnLoading(true)
+    try {
+      await removeConnection(address)
+      setConnStatus('none')
+    } catch (err) {
+      alert('Remove failed: ' + err.message)
+    } finally {
+      setConnLoading(false)
+    }
+  }
 
   function handleSave() {
     profile.saveProfile()
@@ -189,8 +250,42 @@ function ProfilePage() {
               </div>
             )}
 
+            {!isOwner && wallet.address && (
+              <div className={styles.connectRow}>
+                {connStatus === 'none' && (
+                  <button className={styles.connectBtn} onClick={handleConnect} disabled={connLoading}>
+                    {connLoading ? '...' : 'Connect'}
+                  </button>
+                )}
+                {connStatus === 'pending_sent' && (
+                  <button className={styles.pendingBtn} disabled>Pending</button>
+                )}
+                {connStatus === 'pending_received' && (
+                  <>
+                    <button className={styles.connectBtn} onClick={handleAcceptConn} disabled={connLoading}>
+                      Accept
+                    </button>
+                    <button className={styles.rejectBtn} onClick={handleRejectConn} disabled={connLoading}>
+                      Reject
+                    </button>
+                  </>
+                )}
+                {connStatus === 'connected' && (
+                  <button className={styles.connectedBtn} onClick={handleRemoveConn} disabled={connLoading}>
+                    Connected
+                  </button>
+                )}
+              </div>
+            )}
+
           </div>
         </div>
+
+        {profile.loading && (
+          <div className={styles.section}>
+            <p className={styles.empty}>Loading profile...</p>
+          </div>
+        )}
 
         <div className={styles.section}>
           <div className={styles.sectionHeader}>
@@ -346,7 +441,7 @@ function ProfilePage() {
           ))}
         </div>
 
-        {(profile.history.length > 0 || isOwner) && (
+        {profile.history.length > 0 || isOwner ? (
           <div className={styles.section} id="history">
             <div className={styles.sectionHeader}>
               <h2 className={styles.sectionTitle}>
@@ -354,7 +449,11 @@ function ProfilePage() {
                 Version History
               </h2>
               {isOwner && profile.history.length > 0 && (
-                <button className={styles.clearAllBtn} onClick={profile.clearHistory}>
+                <button className={styles.clearAllBtn} onClick={() => {
+                  if (confirm('This will permanently destroy all version history. All IPFS data will be unrecoverable. Continue?')) {
+                    profile.clearHistory()
+                  }
+                }}>
                   Clear all
                 </button>
               )}
@@ -372,6 +471,16 @@ function ProfilePage() {
                 <span className={styles.historyTime}>{formatUTCTimestamp(entry.timestamp)}</span>
                 <span className={styles.historyDot}>·</span>
                 <span className={styles.historyMessage}>{entry.message}</span>
+                {entry.txSignature && (
+                  <a
+                    className={styles.historyTx}
+                    href={`https://solscan.io/tx/${entry.txSignature}?cluster=devnet`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={entry.txSignature}
+                    dangerouslySetInnerHTML={{ __html: externalLinkIcon }}
+                  />
+                )}
                 {isOwner && (
                   <div className={styles.historyActions}>
                     <button
@@ -382,8 +491,12 @@ function ProfilePage() {
                     />
                     <button
                       className={styles.deleteEntryBtn}
-                      onClick={() => profile.deleteHistoryEntry(entry.id)}
-                      title="Delete this version"
+                      onClick={() => {
+                        if (confirm('This will permanently destroy this version. The data will be unrecoverable. Continue?')) {
+                          profile.deleteHistoryEntry(entry.id)
+                        }
+                      }}
+                      title="Permanently delete this version"
                       dangerouslySetInnerHTML={{ __html: deleteIcon }}
                     />
                   </div>
@@ -391,13 +504,14 @@ function ProfilePage() {
               </div>
             ))}
           </div>
+        ) : null}
+
+        {isOwner && (
+          <button className={styles.saveTab} onClick={handleSave} disabled={profile.saving}>
+            {profile.saving ? 'Saving...' : 'Save'}
+          </button>
         )}
-
       </div>
-
-      {isOwner && (
-        <button className={styles.saveTab} onClick={handleSave}>Save</button>
-      )}
     </div>
   )
 }

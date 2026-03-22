@@ -170,6 +170,10 @@
   box-shadow: none;
   white-space: nowrap;
   flex-shrink: 0;
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.8);
+  }
 }
 
 .searchToggle {
