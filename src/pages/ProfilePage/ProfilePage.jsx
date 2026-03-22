@@ -202,7 +202,7 @@ function ProfilePage() {
                     maxLength={60}
                   />
                 ) : (
-                  profile.website ? <span className={styles.metaText}>{profile.website}</span> : null
+                  profile.website ? <a href={profile.website.startsWith('http') ? profile.website : `https://${profile.website}`} target="_blank" rel="noopener noreferrer" className={styles.metaText}>{profile.website}</a> : null
                 )}
               </div>
 

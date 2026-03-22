@@ -200,6 +200,15 @@
   font-family: var(--font-mono);
   font-size: 0.78rem;
   color: var(--text-muted);
+
+  &:is(a) {
+    color: #2563eb;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
 .copyBtn {

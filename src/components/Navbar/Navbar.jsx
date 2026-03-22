@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useWallet } from '../../contexts/WalletContext'
 import WalletDropdown from './WalletDropdown'
 import searchIcon from 'pixelarticons/svg/search.svg?raw'
@@ -24,6 +24,7 @@ function loadRecent() {
 
 function Navbar() {
   const { address, connecting, connect, disconnect } = useWallet()
+  const navigate = useNavigate()
   const [searchOpen, setSearchOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [recentSearches, setRecentSearches] = useState(loadRecent)
@@ -37,9 +38,18 @@ function Navbar() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(updated))
   }
 
+  function handleSearch(term) {
+    term = term.trim()
+    if (!term) return
+    saveSearch(term)
+    setSearchOpen(false)
+    setSearchQuery('')
+    navigate(`/profile/${term}`)
+  }
+
   function handleDesktopSubmit(e) {
     e.preventDefault()
-    saveSearch(searchQuery)
+    handleSearch(searchQuery)
   }
 
   return (
@@ -54,7 +64,7 @@ function Navbar() {
               <button type="submit" className={styles.searchIcon} dangerouslySetInnerHTML={{ __html: searchIcon }} />
               <input
                 type="text"
-                placeholder="Search"
+                placeholder="Search by wallet address"
                 className={styles.searchInput}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -140,7 +150,7 @@ function Navbar() {
         anchorRef={searchRef}
         recentSearches={recentSearches}
         setRecentSearches={setRecentSearches}
-        saveSearch={saveSearch}
+        saveSearch={handleSearch}
       />
     </>
   )

@@ -7,6 +7,11 @@ import styles from './SearchOverlay.module.scss'
 
 const isMobile = () => window.matchMedia('(max-width: 1023px)').matches
 
+function truncateAddress(addr) {
+  if (addr.length <= 12) return addr
+  return `${addr.slice(0, 4)}...${addr.slice(-4)}`
+}
+
 function SearchOverlay({
   isOpen, onClose,
   searchQuery, setSearchQuery,
@@ -64,8 +69,7 @@ function SearchOverlay({
   }
 
   function handleRecentClick(term) {
-    setSearchQuery(term)
-    inputRef.current?.focus()
+    saveSearch(term)
   }
 
   function handleClear() {
@@ -91,7 +95,7 @@ function SearchOverlay({
               onClick={() => handleRecentClick(term)}
             >
               <span className={styles.recentIcon} dangerouslySetInnerHTML={{ __html: clockIcon }} />
-              {term}
+              {truncateAddress(term)}
             </button>
           </li>
         ))}
@@ -128,7 +132,7 @@ function SearchOverlay({
           <input
             ref={inputRef}
             type="text"
-            placeholder="Search"
+            placeholder="Search by wallet address"
             className={styles.searchInput}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
