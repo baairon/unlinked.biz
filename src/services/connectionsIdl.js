@@ -1,5 +1,5 @@
 export const CONNECTIONS_IDL = {
-  address: import.meta.env.VITE_CONNECTIONS_PROGRAM_ID,
+  address: import.meta.env.VITE_CONNECTIONS_PROGRAM_ID || '11111111111111111111111111111111',
   metadata: {
     name: 'unlinked_connections',
     version: '0.1.0',

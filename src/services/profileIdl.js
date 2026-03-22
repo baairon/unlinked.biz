@@ -1,5 +1,5 @@
 export const PROFILE_IDL = {
-  address: import.meta.env.VITE_PROFILE_PROGRAM_ID,
+  address: import.meta.env.VITE_PROFILE_PROGRAM_ID || '11111111111111111111111111111111',
   metadata: {
     name: 'unlinked_profile',
     version: '0.1.0',

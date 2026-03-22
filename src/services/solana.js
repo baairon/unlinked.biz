@@ -3,7 +3,7 @@ import { AnchorProvider, Program } from '@coral-xyz/anchor'
 import { PROFILE_IDL } from './profileIdl'
 
 const PROGRAM_ID = new PublicKey(
-  import.meta.env.VITE_PROFILE_PROGRAM_ID
+  import.meta.env.VITE_PROFILE_PROGRAM_ID || '11111111111111111111111111111111'
 )
 
 

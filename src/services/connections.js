@@ -5,7 +5,7 @@ import { CONNECTIONS_IDL } from './connectionsIdl'
 import bs58 from 'bs58'
 
 const PROGRAM_ID = new PublicKey(
-  import.meta.env.VITE_CONNECTIONS_PROGRAM_ID
+  import.meta.env.VITE_CONNECTIONS_PROGRAM_ID || '11111111111111111111111111111111'
 )
 
 const ACCOUNT_SIZE = 90
